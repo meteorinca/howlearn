@@ -1,0 +1,11 @@
+[
+  {
+    "id": "post-1",
+    "file": "posts/Post1.md",
+    "title": "The Architecture of Capability",
+    "subtitle": "Belief, boredom, and the science of how learning actually works.",
+    "tags": ["Learning Science", "Mathematical Capability", "Educational Psychology"],
+    "date": "2026-04-14",
+    "readingTime": 9
+  }
+]

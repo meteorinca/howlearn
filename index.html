@@ -3,318 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Architecture of Capability</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+  <title>HowLearn — Research & Ideas, Distilled</title>
+  <meta name="description" content="A curated collection of research, ideas, and understanding distilled into essays on learning science, education psychology, and cognitive development." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="progress-bar" id="progressBar"></div>
+  <div id="progress-bar"></div>
 
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="brand" href="#">Influence Notes</a>
-      <nav class="top-nav">
-        <a href="#article">Article</a>
-        <a href="#key-lines">Key Lines</a>
-        <a href="#quotes">Quotes</a>
+      <a class="brand" href="index.html">HowLearn</a>
+      <nav class="top-nav" id="top-nav">
+        <a href="index.html">Home</a>
+        <a href="#articles">Articles</a>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
-    <section class="hero reveal">
-      <p class="eyebrow">Essay / Learning Science / Mathematical Capability</p>
-      <h1>The Architecture of Capability</h1>
-      <p class="hero-subtitle">
-        Belief, boredom, and the science of how learning actually works.
+    <section class="index-hero reveal">
+      <p class="eyebrow">Research · Ideas · Understanding</p>
+      <h1>Knowledge<br><em>Distilled</em></h1>
+      <p>
+        Deep dives into learning science, educational psychology, and the mechanisms behind how capability actually develops.
       </p>
-      <div class="hero-meta">
-        <span>Long-form essay</span>
-        <span>Educational psychology</span>
-        <span>Cognitive science</span>
-      </div>
     </section>
 
-    <section class="layout">
-      <aside class="sidebar reveal" id="quotes">
-        <div class="sidebar-card">
-          <p class="sidebar-label">On this page</p>
-          <nav class="toc" id="toc">
-            <a href="#purpose">A Note on Purpose</a>
-            <a href="#premise">The Narrative Precedes the Neurons</a>
-            <a href="#hierarchy">The Empirical Hierarchy</a>
-            <a href="#intervention">Precision Over Bureaucracy</a>
-            <a href="#practice">The Physiology of Practice</a>
-            <a href="#fog">Navigating the Epistemic Fog</a>
-          </nav>
+    <section class="articles-section" id="articles">
+      <p class="articles-label">Articles</p>
+      <div class="articles-grid reveal-stagger" id="articles-grid">
+        <!-- Injected by main.js from manifest.json -->
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <span>Loading articles…</span>
         </div>
-
-        <div class="sidebar-card quotes-stack" id="key-lines">
-          <p class="sidebar-label">Highlighted lines</p>
-
-          <blockquote class="quote-card">
-            <span class="quote-mark">“</span>
-            <p>The narrative adopted by the learner directly modulates the perceived reality of the limit.</p>
-          </blockquote>
-
-          <blockquote class="quote-card">
-            <span class="quote-mark">“</span>
-            <p>What a learner expects of themselves, and what the instructor believes the learner can achieve, are the two most potent levers in education.</p>
-          </blockquote>
-
-          <blockquote class="quote-card">
-            <span class="quote-mark">“</span>
-            <p>Boredom is not a neutral state of inactivity. It is an active, corrosive agent.</p>
-          </blockquote>
-
-          <blockquote class="quote-card">
-            <span class="quote-mark">“</span>
-            <p>When a measure becomes a target, it ceases to be a good measure.</p>
-          </blockquote>
-
-          <blockquote class="quote-card">
-            <span class="quote-mark">“</span>
-            <p>The infrastructure required to do this is currently under construction.</p>
-          </blockquote>
-        </div>
-      </aside>
-
-      <article class="article reveal" id="article">
-        <section class="article-section" id="purpose">
-          <p class="section-kicker">A Note on Purpose</p>
-          <p>
-            The following examination consolidates research from educational psychology, meta-analytic data,
-            and cognitive science to illuminate the mechanisms that either unlock or obstruct the development
-            of mathematical reasoning.
-          </p>
-          <p class="callout-line">
-            This framework is offered as a resource for understanding the long-term cultivation of analytical thinking,
-            separate from any individual student's current trajectory.
-          </p>
-        </section>
-
-        <section class="article-section" id="premise">
-          <h2>The Foundational Premise: The Narrative Precedes the Neurons</h2>
-
-          <p>
-            The most significant barrier to mathematical proficiency resides not in synaptic wiring but in the
-            stories learners and their communities tell about the nature of ability. The widespread acceptance of
-            the fixed mindset stands as a primary impediment to intellectual growth.
-          </p>
-
-          <p>
-            This framework posits that intelligence is an immutable, predetermined quantity distributed unequally
-            at birth. This perspective proves convincing because it aligns comfortably with the biological experience
-            of mental fatigue. When a student encounters cognitive friction, the sensation of exhaustion arrives
-            promptly, and the fixed mindset narrative offers a convenient, albeit false, explanation:
-          </p>
-
-          <blockquote class="inline-quote">
-            <p>“The fatigue signals a limit. This limit proves a lack of talent.”</p>
-          </blockquote>
-
-          <p>
-            The sensation of mental exhaustion, however, operates less like a fuel gauge and more like a neurological
-            governor. It is a regulatory signal, not a diagnostic one. Research involving neurological anomalies,
-            specifically cases where the capacity for mental fatigue was lost following a stroke, demonstrates a
-            profound disconnect between the feeling of cognitive depletion and the capacity for sustained attention.
-          </p>
-
-          <p class="callout-line">
-            The subject did not become smarter. The subject gained patience.
-          </p>
-
-          <p>
-            This reveals a critical insight. The narrative adopted by the learner directly modulates the perceived
-            reality of the limit. If the collective team, including parents, educators, and the student, operates
-            from the premise that cognitive strain signals growth rather than failure, the brain's internal governor
-            loosens.
-          </p>
-
-          <p class="callout-line">
-            Neural plasticity accelerates when the expectation of eventual mastery remains intact.
-          </p>
-        </section>
-
-        <section class="article-section" id="hierarchy">
-          <h2>The Empirical Hierarchy: What Actually Influences Achievement</h2>
-
-          <p>
-            Moving from neurological theory to empirical evidence, the most wide-ranging synthesis of educational
-            research available is John Hattie's meta-analysis of hundreds of influences on student achievement.
-            A visual representation of this data reveals a hierarchy that frequently contradicts conventional educational practice.
-          </p>
-
-          <h3>The Apex of Influence</h3>
-          <p>
-            At the very summit of effective interventions sit two factors that eclipse nearly all structural or
-            resource-based investments. The first is <strong>Collective Teacher Efficacy</strong>, the shared belief
-            among a faculty that they possess the capacity to positively affect student outcomes. The second is
-            <strong>Student Self-Reported Grades</strong>, which functions less as a measure of past performance and
-            more as a proxy for <strong>Student Expectation</strong>.
-          </p>
-
-          <p class="callout-line">
-            These are not material resources. They are shared cognitive frameworks.
-          </p>
-
-          <h3>The Nadir of Influence</h3>
-          <p>
-            At the absolute bottom of the list, ranking as more detrimental to learning than many far more dramatic
-            factors, sits <strong>Boredom</strong>. This is a crucial distinction. Boredom is not a neutral state
-            of inactivity. It is an active, corrosive agent that prevents the encoding of memory and the formation
-            of durable neural pathways.
-          </p>
-
-          <p>
-            When a subject is perceived as boring, the brain treats the information as non-essential and refuses
-            to commit it to long-term storage. This is particularly perilous for mathematics and science, subjects
-            which often demand a high tolerance for abstraction and incremental, non-intuitive steps.
-          </p>
-
-          <blockquote class="inline-quote">
-            <p>When instruction fails to bridge the gap between abstract procedure and tangible relevance, boredom sets in, and learning effectively ceases.</p>
-          </blockquote>
-
-          <h3>The Trap of Measurement</h3>
-          <p>
-            This hierarchy clarifies the paradoxical role of grading and homework. When deployed as instruments
-            of compliance, punishment, or mindless repetition, these tools rank remarkably low, often producing
-            effects that are negligible or even negative.
-          </p>
-
-          <p>
-            The reason is encapsulated by Goodhart's Law:
-          </p>
-
-          <blockquote class="inline-quote">
-            <p>“When a measure becomes a target, it ceases to be a good measure.”</p>
-          </blockquote>
-
-          <p>
-            A grade is a lagging indicator. It is a snapshot of a specific gap in foundational understanding at
-            a specific moment in time. To reshape the entire learning process around the acquisition of the grade
-            is to mistake the shadow for the substance.
-          </p>
-
-          <p class="callout-line">
-            The grades served only to codify a temporary state of misalignment between the student's mind and the curriculum's presentation.
-          </p>
-        </section>
-
-        <section class="article-section" id="intervention">
-          <h2>The Optimal Intervention: Precision Over Bureaucracy</h2>
-
-          <p>
-            The evidence for one-on-one tutoring is overwhelming. This model, sometimes referred to as the
-            “Aristotle for Alexander” approach, bypasses the administrative noise of the standard classroom.
-          </p>
-
-          <p>
-            The skilled tutor does not assign a letter grade. The tutor administers a diagnostic probe, identifies
-            the precise conceptual hole in the foundation, and fills it with targeted practice and explanation.
-            This method operates with surgical precision, free from the need to teach to the middle of a bell curve
-            or maintain the appearance of uniform progress across a group with extreme variance in capability.
-          </p>
-
-          <p>
-            The focus shifts from the external validation of the grade to the internal coherence of the student's
-            mental model. The emphasis lands on four core inputs rather than the single output of a report card:
-          </p>
-
-          <div class="framework-grid">
-            <div class="framework-card">
-              <h4>Narrative and Belief</h4>
-              <p>The consistent reinforcement that struggle is a function of unfamiliarity, not a permanent deficit.</p>
-            </div>
-            <div class="framework-card">
-              <h4>Foundational Coherence</h4>
-              <p>The systematic closing of knowledge gaps that render new information disjointed or arbitrary.</p>
-            </div>
-            <div class="framework-card">
-              <h4>Metacognitive Strategy</h4>
-              <p>The explicit teaching of self-regulation, self-questioning, and awareness of one’s own thinking.</p>
-            </div>
-            <div class="framework-card">
-              <h4>Systematic Difficulty</h4>
-              <p>A scaffolded increase in challenge that maintains the balance between strain and achievable flow.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="article-section" id="practice">
-          <h2>The Physiology of Practice: Strenuousness, Flow, and the False Flag</h2>
-
-          <p>
-            A pervasive and damaging myth holds that effective learning must be fun. While curiosity and engagement
-            are excellent states, the reality of deliberate practice is that it often begins with friction and tedium.
-            The act of drilling multiplication facts, manipulating algebraic symbols, or parsing dense scientific text
-            rarely offers immediate reward.
-          </p>
-
-          <p>
-            This initial phase of strenuousness triggers the brain's internal governor. The system issues an
-            “exhausted” signal as a prompt to disengage and seek something more immediately gratifying.
-          </p>
-
-          <p class="callout-line">
-            The skilled learner recognizes this signal as a false flag.
-          </p>
-
-          <p>
-            That learner understands that friction is often the price of entry for the flow state, the condition of
-            deep immersion where time dilates and the task becomes intrinsically rewarding. Athletic training offers
-            a useful parallel. The runner does not enjoy every stride, but the strain is reinterpreted as productive.
-          </p>
-
-          <blockquote class="inline-quote">
-            <p>The goal is not to eliminate the feeling of mental effort but to reinterpret it as the necessary precursor to mastery.</p>
-          </blockquote>
-        </section>
-
-        <section class="article-section" id="fog">
-          <h2>Navigating the Epistemic Fog: Useful Models in an Opaque System</h2>
-
-          <p>
-            Any discussion of learning and the brain must conclude with humility. Humanity understands the chronology
-            of the cosmos with startling precision, yet still struggles to explain the electrochemical cascade that
-            occurs when a child recognizes a pattern in a sequence of numbers.
-          </p>
-
-          <p>
-            This uncertainty provides fertile ground for “truthy” but unsubstantiated myths about learning.
-            The taxonomy of visual learners versus auditory learners, the categorical dismissal of memorization,
-            and the prophecy of being “just not a math person” endure because they offer simple explanations for
-            a deeply complex system.
-          </p>
-
-          <p>
-            The proper response is not blind allegiance to a single method, but an iterative commitment to useful
-            models. As George Box famously put it:
-          </p>
-
-          <blockquote class="inline-quote">
-            <p>“All models are wrong, but some are useful.”</p>
-          </blockquote>
-
-          <p>
-            The path forward for any student grappling with mathematics lies not in making the work effortless,
-            but in constructing a better narrative around the effort itself.
-          </p>
-
-          <p class="callout-line final-line">
-            “The infrastructure required to do this is currently under construction.”
-          </p>
-        </section>
-      </article>
+      </div>
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <footer class="site-footer">
+    <span>HowLearn — Research distilled. Open & static.</span>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
