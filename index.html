@@ -1,533 +1,320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Learning - How it Works/title>
-
-  <style>
-    /* ---------- RESET & BASE ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #faf9f6;
-      color: #1e1e1e;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      font-weight: 350;
-      padding: 2rem 1.2rem;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .main-container {
-      max-width: 860px;
-      width: 100%;
-    }
-
-    /* ---------- TYPOGRAPHY (quiet but sharp) ---------- */
-    h1 {
-      font-size: 2.8rem;
-      font-weight: 380;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: 0.75rem;
-      color: #1a1e24;
-      border-left: 4px solid #b76e6e;
-      padding-left: 1.4rem;
-    }
-
-    .subtitle {
-      font-size: 1.1rem;
-      font-weight: 360;
-      color: #4a4f57;
-      margin-bottom: 3rem;
-      font-style: normal;
-      padding-left: 1.8rem;
-    }
-
-    h2 {
-      font-weight: 390;
-      font-size: 1.9rem;
-      letter-spacing: -0.01em;
-      margin: 2.8rem 0 1rem 0;
-      color: #252a33;
-      border-bottom: 1px solid #dddcd8;
-      padding-bottom: 0.5rem;
-    }
-
-    h3 {
-      font-weight: 420;
-      font-size: 1.3rem;
-      margin: 2rem 0 0.8rem 0;
-      color: #2f363f;
-    }
-
-    p {
-      margin-bottom: 1.4rem;
-      font-size: 1.05rem;
-      color: #2b2f36;
-    }
-
-    /* subtle link style */
-    a {
-      color: #9f5e5e;
-      text-decoration: none;
-      border-bottom: 1px dotted #d0b6b6;
-      transition: border 0.2s ease;
-    }
-
-    a:hover {
-      border-bottom: 1px solid #9f5e5e;
-    }
-
-    /* ---------- SCATTER PLOT (visual metaphor — placeholder for hattie) ---------- */
-    .hattie-viz {
-      background: #ffffffd9;
-      backdrop-filter: blur(2px);
-      border-radius: 26px;
-      padding: 1.8rem 1.5rem 1.8rem 1.8rem;
-      margin: 2.2rem 0 2.8rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
-      border: 1px solid #eae7e2;
-    }
-
-    .viz-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-      color: #5b5f66;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .scatter-plot {
-      position: relative;
-      height: 140px;
-      margin: 1.8rem 0 1rem;
-      border-left: 1.5px solid #cccbc8;
-      border-bottom: 1.5px solid #cccbc8;
-      background: linear-gradient(to right, #f6f4f1 0%, #fefdfc 98%);
-    }
-
-    /* clickable dots — each dot represents an influence, minimal animation */
-    .dot {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      background: #9b6b6b;
-      border-radius: 50%;
-      transform: translate(-50%, 50%);
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.4, 1), background 0.2s, box-shadow 0.3s;
-      border: 1.5px solid #faf9f6;
-    }
-
-    .dot:hover {
-      transform: translate(-50%, 50%) scale(1.7);
-      background: #b15e5e;
-      box-shadow: 0 8px 14px rgba(120, 60, 60, 0.1);
-      z-index: 10;
-    }
-
-    .dot.apex {
-      background: #2d5e5e;
-    }
-    .dot.nadir {
-      background: #b66f6f;
-      opacity: 0.9;
-    }
-
-    .legend {
-      display: flex;
-      gap: 2rem;
-      margin: 0.8rem 0 0.2rem;
-      font-size: 0.8rem;
-      color: #4f555e;
-    }
-
-    .legend span::before {
-      content: "●";
-      margin-right: 6px;
-      font-size: 1.1rem;
-      vertical-align: middle;
-    }
-
-    .tooltip-message {
-      min-height: 2.2rem;
-      font-style: italic;
-      padding: 0.5rem 0 0;
-      color: #3b414a;
-      border-top: 1px dashed #d6d3ce;
-      margin-top: 0.8rem;
-      transition: opacity 0.2s;
-    }
-
-    /* ---------- HIGHLIGHT REEL — fluid / effortless animation, minimal ---------- */
-    .highlight-reel {
-      margin: 3.2rem 0 2.8rem;
-    }
-
-    .reel-title {
-      font-size: 1rem;
-      font-weight: 420;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #7a6e64;
-      margin-bottom: 1.6rem;
-    }
-
-    .quote-strip {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    /* each quote card — animation on reveal and subtle hover */
-    .insight-card {
-      background: transparent;
-      border-left: 3px solid #c9aeae;
-      padding: 0.9rem 0 0.9rem 1.6rem;
-      font-size: 1.25rem;
-      font-weight: 380;
-      color: #1f262e;
-      opacity: 0;
-      transform: translateY(8px);
-      animation: driftUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      transition: border-color 0.25s, background 0.3s;
-      border-radius: 0 2px 2px 0;
-      backdrop-filter: blur(0);
-    }
-
-    .insight-card:nth-child(1) { animation-delay: 0.1s; }
-    .insight-card:nth-child(2) { animation-delay: 0.25s; }
-    .insight-card:nth-child(3) { animation-delay: 0.4s; }
-    .insight-card:nth-child(4) { animation-delay: 0.55s; }
-    .insight-card:nth-child(5) { animation-delay: 0.7s; }
-
-    @keyframes driftUp {
-      0% { opacity: 0; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .insight-card:hover {
-      border-left-color: #a15656;
-      background: rgba(250, 245, 240, 0.7);
-      transition: all 0.2s ease;
-    }
-
-    /* subtle quote attribution / source line */
-    .card-meta {
-      margin-top: 0.3rem;
-      font-size: 0.8rem;
-      font-weight: 360;
-      color: #887e74;
-      letter-spacing: 0.3px;
-    }
-
-  
-    .article-content {
-      margin-top: 1.8rem;
-    }
-
-    strong {
-      font-weight: 520;
-      color: #1f2a36;
-    }
-
-    em {
-      font-style: italic;
-      color: #4f4a45;
-    }
-
-    blockquote {
-      margin: 2rem 0;
-      padding: 0.5rem 0 0.5rem 1.8rem;
-      border-left: 3px solid #b6a9a9;
-      font-style: normal;
-      color: #3f454e;
-    }
-
-    /* small footer / note */
-    .post-meta {
-      margin-top: 3.5rem;
-      font-size: 0.8rem;
-      color: #8f8b85;
-      border-top: 1px solid #e2ded9;
-      padding-top: 2rem;
-      text-align: right;
-    }
-
-    /* button / interactive minimal */
-    .reset-tip {
-      background: none;
-      border: 1px solid #dbd5ce;
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      color: #5f5650;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .reset-tip:hover {
-      background: #ece7e2;
-      border-color: #b7a9a2;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Architecture of Capability</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="main-container">
+  <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Title area -->
-  <h1>The Architecture of Capability:<br>Belief, Boredom, and the Science of How Learning Actually Works</h1>
-  <div class="subtitle">A note on purpose · research synthesis & Hattie meta‑analysis</div>
-
-  <!-- HATTIE VISUAL SCATTER (clickable dots, influences) -->
-  <div class="hattie-viz">
-    <div class="viz-header">
-      <span>INFLUENCE EFFECT SIZE (hattie · visible thinking)</span>
-      <span>⬤ apex · ⬤ nadir</span>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="#">Influence Notes</a>
+      <nav class="top-nav">
+        <a href="#article">Article</a>
+        <a href="#key-lines">Key Lines</a>
+        <a href="#quotes">Quotes</a>
+      </nav>
     </div>
-    <div class="scatter-plot" id="scatterPlot">
-      <!-- dots will be injected via js to keep html clean, but we define static placeholder 
-           js adds interaction + dynamic tooltip -->
-    </div>
-    <div class="legend">
-      <span style="color:#2d5e5e;">Collective teacher efficacy</span>
-      <span style="color:#2d5e5e;">Self-reported grades (expectation)</span>
-      <span style="color:#b66f6f;">Boredom</span>
-      <span style="color:#9b6b6b;">Homework / grading (compliance)</span>
-    </div>
-    <div id="dotTooltip" class="tooltip-message">⤷ click any dot — each represents a meta‑influence</div>
-  </div>
+  </header>
 
-  <!-- HIGHLIGHT REEL — animated quotes / important sentences (fluid, minimal) -->
-  <div class="highlight-reel">
-    <div class="reel-title">⚡ highlight reel · key insights</div>
-    <div class="quote-strip" id="quoteStrip">
-      <!-- cards will be generated via js for clean control, but we can write them static 
-           to ensure graceful fallback. we'll populate from js for consistency. -->
-    </div>
-    <div style="margin-top: 0.8rem; display: flex; justify-content: flex-end;">
-      <button class="reset-tip" id="replayQuotes" aria-label="replay animation">↻ replay fluid motion</button>
-    </div>
-  </div>
+  <main class="page-shell">
+    <section class="hero reveal">
+      <p class="eyebrow">Essay / Learning Science / Mathematical Capability</p>
+      <h1>The Architecture of Capability</h1>
+      <p class="hero-subtitle">
+        Belief, boredom, and the science of how learning actually works.
+      </p>
+      <div class="hero-meta">
+        <span>Long-form essay</span>
+        <span>Educational psychology</span>
+        <span>Cognitive science</span>
+      </div>
+    </section>
 
-  <!-- ARTICLE BODY (the full post) -->
-  <div class="article-content">
-    <p><strong>A Note on Purpose</strong><br>
-    The following examination consolidates research from educational psychology, meta-analytic data, and cognitive science to illuminate the mechanisms that either unlock or obstruct the development of mathematical reasoning. This framework is offered as a resource for understanding the long-term cultivation of analytical thinking, separate from any individual student's current trajectory.</p>
+    <section class="layout">
+      <aside class="sidebar reveal" id="quotes">
+        <div class="sidebar-card">
+          <p class="sidebar-label">On this page</p>
+          <nav class="toc" id="toc">
+            <a href="#purpose">A Note on Purpose</a>
+            <a href="#premise">The Narrative Precedes the Neurons</a>
+            <a href="#hierarchy">The Empirical Hierarchy</a>
+            <a href="#intervention">Precision Over Bureaucracy</a>
+            <a href="#practice">The Physiology of Practice</a>
+            <a href="#fog">Navigating the Epistemic Fog</a>
+          </nav>
+        </div>
 
-    <h2>The Foundational Premise: The Narrative Precedes the Neurons</h2>
-    <p>The most significant barrier to mathematical proficiency resides not in synaptic wiring but in the stories learners and their communities tell about the nature of ability. The widespread acceptance of the fixed mindset stands as a primary impediment to intellectual growth. This framework posits that intelligence is an immutable, predetermined quantity distributed unequally at birth. This perspective proves "truthy" because it aligns comfortably with the biological experience of mental fatigue. When a student encounters cognitive friction, the sensation of exhaustion arrives promptly, and the fixed mindset narrative offers a convenient, albeit false, explanation: <em>"The fatigue signals a limit. This limit proves a lack of talent."</em></p>
+        <div class="sidebar-card quotes-stack" id="key-lines">
+          <p class="sidebar-label">Highlighted lines</p>
 
-    <p>The sensation of mental exhaustion, however, operates less like a fuel gauge and more like a neurological governor. This mechanism likely evolved to conserve metabolic resources and discourage obsessive, solitary focus on abstract problems that offered little immediate survival advantage. It is a regulatory signal, not a diagnostic one. Research involving neurological anomalies, specifically cases where the capacity for mental fatigue was lost following a stroke, demonstrates a profound disconnect between the <em>feeling</em> of cognitive depletion and the <em>capacity</em> for sustained attention. In such cases, the subject did not experience an increase in raw intelligence. Instead, the subject gained infinite patience for repetitive cognitive tasks. The internal signal to cease was simply absent. This reveals a critical insight: the narrative adopted by the learner directly modulates the perceived reality of the limit. If the collective team, including parents, educators, and the student, operates from the premise that cognitive strain signals growth rather than failure, the brain's internal governor loosens. Neural plasticity accelerates precisely when the expectation of eventual mastery remains intact.</p>
+          <blockquote class="quote-card">
+            <span class="quote-mark">“</span>
+            <p>The narrative adopted by the learner directly modulates the perceived reality of the limit.</p>
+          </blockquote>
 
-    <h2>The Empirical Hierarchy: What Actually Influences Achievement</h2>
-    <p>Moving from neurological theory to empirical evidence, the most comprehensive synthesis of educational research available is John Hattie's meta-analysis of over 400 influences on student achievement. A visual representation of this data reveals a hierarchy that frequently contradicts conventional educational practice.</p>
+          <blockquote class="quote-card">
+            <span class="quote-mark">“</span>
+            <p>What a learner expects of themselves, and what the instructor believes the learner can achieve, are the two most potent levers in education.</p>
+          </blockquote>
 
-    <h3>The Apex of Influence</h3>
-    <p>At the very summit of effective interventions sit two factors that eclipse nearly all structural or resource based investments. The first is <strong>Collective Teacher Efficacy</strong>, the shared belief among a faculty that they possess the capacity to positively affect student outcomes. The second is <strong>Student Self-Reported Grades</strong>, which functions less as a measure of past performance and more as a proxy for <strong>Student Expectation</strong>. This finding confirms that what a learner expects of themselves, and what the instructor believes the learner can achieve, are the two most potent levers in education. These are not material resources. They are shared cognitive frameworks.</p>
+          <blockquote class="quote-card">
+            <span class="quote-mark">“</span>
+            <p>Boredom is not a neutral state of inactivity. It is an active, corrosive agent.</p>
+          </blockquote>
 
-    <h3>The Nadir of Influence</h3>
-    <p>At the absolute bottom of the list, ranking as more detrimental to learning than diagnosed learning disabilities or even the negative effects of physical punishment, sits <strong>Boredom</strong>. This is a crucial distinction. Boredom is not a neutral state of inactivity. It is an active, corrosive agent that prevents the encoding of memory and the formation of durable neural pathways. When a subject is perceived as boring, the brain treats the information as non essential and refuses to commit it to long term storage. This is particularly perilous for mathematics and science, subjects which often demand a high tolerance for abstract notation and incremental, non intuitive steps. When instruction fails to bridge the gap between abstract procedure and tangible relevance, boredom sets in, and learning effectively ceases.</p>
+          <blockquote class="quote-card">
+            <span class="quote-mark">“</span>
+            <p>When a measure becomes a target, it ceases to be a good measure.</p>
+          </blockquote>
 
-    <h3>The Trap of Measurement</h3>
-    <p>This hierarchy clarifies the paradoxical role of grading and homework. When deployed as instruments of compliance, punishment, or mindless repetition, these tools rank remarkably low on Hattie's list, often producing effect sizes that are negligible or even negative. The reason for this counterintuitive outcome is encapsulated by Goodhart's Law, an economic principle stating: <em>"When a measure becomes a target, it ceases to be a good measure."</em></p>
+          <blockquote class="quote-card">
+            <span class="quote-mark">“</span>
+            <p>The infrastructure required to do this is currently under construction.</p>
+          </blockquote>
+        </div>
+      </aside>
 
-    <p>A grade is a lagging indicator. It is a snapshot of a specific gap in foundational understanding at a specific moment in time. To optimize the entire learning process for the acquisition of the grade is to mistake the shadow for the substance. The historical record of mathematically capable adults frequently contains a chapter wherein the individual received mediocre marks and found the subject tedious. The causal direction of this relationship, whether boredom caused the low marks or low marks deepened the boredom, is ultimately irrelevant. The outcome remains the same: a delay, or for too many a permanent foreclosure, in the realization of mathematical potential. The grades served only to codify a temporary state of misalignment between the student's mind and the curriculum's presentation.</p>
+      <article class="article reveal" id="article">
+        <section class="article-section" id="purpose">
+          <p class="section-kicker">A Note on Purpose</p>
+          <p>
+            The following examination consolidates research from educational psychology, meta-analytic data,
+            and cognitive science to illuminate the mechanisms that either unlock or obstruct the development
+            of mathematical reasoning.
+          </p>
+          <p class="callout-line">
+            This framework is offered as a resource for understanding the long-term cultivation of analytical thinking,
+            separate from any individual student's current trajectory.
+          </p>
+        </section>
 
-    <h2>The Optimal Intervention: Precision Over Bureaucracy</h2>
-    <p>The evidence for the efficacy of one on one tutoring is overwhelming. This model, sometimes referred to as the "Aristotle for Alexander" approach, bypasses the administrative and bureaucratic noise of the standard classroom. The skilled tutor does not assign a letter grade. The tutor administers a diagnostic probe, identifies the precise conceptual hole in the foundation, and fills it with targeted practice and explanation. This method operates with surgical precision, unencumbered by the need to teach to the middle of a bell curve or to maintain the appearance of uniform progress across a group with extreme variance in capability.</p>
-    <p>This approach mirrors how affluent or highly resourced educational environments have long operated. The focus shifts from the external validation of the grade to the internal coherence of the student's mental model. The emphasis lands squarely on four core inputs rather than the single output of a report card:</p>
-    <ul style="margin: 0 0 1.6rem 1.8rem; color: #2b2f36;">
-      <li><strong>Narrative and Belief:</strong> The consistent reinforcement that struggle is a function of unfamiliarity, not a permanent constitutional deficit.</li>
-      <li><strong>Foundational Coherence:</strong> The systematic closing of knowledge gaps that render new information disjointed or arbitrary.</li>
-      <li><strong>Metacognitive Strategy:</strong> The explicit teaching of self regulation, self questioning, and the awareness of one's own thinking processes.</li>
-      <li><strong>Systematic Difficulty:</strong> A scaffolded increase in challenge that maintains the delicate balance between strenuous effort and achievable flow.</li>
-    </ul>
+        <section class="article-section" id="premise">
+          <h2>The Foundational Premise: The Narrative Precedes the Neurons</h2>
 
-    <h2>The Physiology of Practice: Strenuousness, Flow, and the False Flag</h2>
-    <p>A pervasive and damaging myth holds that effective learning must be "fun." While engagement and curiosity are optimal states, the reality of deliberate practice is that it often begins with a period of friction and tedium. The act of drilling multiplication facts, manipulating algebraic symbols, or parsing dense scientific texts rarely provides the immediate dopamine release of a video game or a social interaction. This initial phase of strenuousness triggers the aforementioned neurological governor. The brain issues the "exhausted" signal as a prompt to disengage and seek more immediately gratifying or biologically relevant stimuli, a prompt colloquially understood as the urge to "touch grass."</p>
-    <p>The skilled learner, or the learner guided by a compelling narrative, recognizes this signal as a false flag. This individual understands that the friction is the price of entry for the <em>flow state</em>, that optimal experience of deep immersion where time dilates and the task becomes intrinsically rewarding. Athletic training provides a useful parallel. The runner does not find every stride enjoyable. The burning in the lungs and the fatigue in the legs are strenuous signals. Yet the athlete pushes through because the narrative of improvement and the pursuit of the runner's high reframe the pain as productive. The same principle applies to cognitive exertion. The goal is not to eliminate the feeling of mental effort but to reinterpret it as the necessary precursor to mastery. This reinterpretation is entirely dependent on the belief systems examined earlier.</p>
+          <p>
+            The most significant barrier to mathematical proficiency resides not in synaptic wiring but in the
+            stories learners and their communities tell about the nature of ability. The widespread acceptance of
+            the fixed mindset stands as a primary impediment to intellectual growth.
+          </p>
 
-    <h2>Navigating the Epistemic Fog: Useful Models in an Opaque System</h2>
-    <p>Any discussion of learning and the brain must conclude with a necessary humility. Humanity understands the chronology of the Big Bang and the formation of heavy elements in stellar cores with greater precision than it understands the electrochemical cascade that occurs when a child recognizes a pattern in a sequence of numbers. Quantum computers can be constructed, yet the synthesis of a perfect artificial blood substitute remains elusive. The brain is, for all practical purposes, the most opaque object in the known universe.</p>
-    <p>This profound uncertainty provides fertile ground for the proliferation of "truthy" but unsubstantiated myths about learning. The taxonomy of "visual learners" versus "auditory learners," the categorical dismissal of memorization as useless drudgery, and the self fulfilling prophecy of being "just not a math person" all persist because they offer simple, digestible explanations for a system of staggering complexity. These models feel correct, even when empirical support is scant or contradictory.</p>
-    <p>The appropriate response to this epistemic fog is not dogmatic adherence to any single methodology, but rather an iterative commitment to the principle articulated by the statistician George Box: <em>"All models are wrong, but some are useful."</em> The framework presented here, drawn from Hattie's empirical data and the nuances of cognitive neuroscience, is not a perfect representation of reality. It is, however, a slightly less wrong model than the folk wisdom of fixed intelligence and innate incapability.</p>
-    <p>The path forward for any student grappling with the strenuous nature of mathematics lies not in finding a way to make the work effortless, but in constructing a more robust narrative around the effort itself. It requires a shift from "I cannot do this" to <em>"The infrastructure required to do this is currently under construction."</em> When the collective belief system supports that narrative, the brain's false governor recedes, and the architecture of capability becomes visible.</p>
-  </div>
+          <p>
+            This framework posits that intelligence is an immutable, predetermined quantity distributed unequally
+            at birth. This perspective proves convincing because it aligns comfortably with the biological experience
+            of mental fatigue. When a student encounters cognitive friction, the sensation of exhaustion arrives
+            promptly, and the fixed mindset narrative offers a convenient, albeit false, explanation:
+          </p>
 
-  <div class="post-meta">
-    <span>✧ article · hattie scatter · animated quotes ✧</span><br>
-    <span style="font-size:0.7rem;">the architecture of capability — belief, boredom & learning</span>
-  </div>
-</div>
+          <blockquote class="inline-quote">
+            <p>“The fatigue signals a limit. This limit proves a lack of talent.”</p>
+          </blockquote>
 
-<script>
-  (function(){
-    "use strict";
+          <p>
+            The sensation of mental exhaustion, however, operates less like a fuel gauge and more like a neurological
+            governor. It is a regulatory signal, not a diagnostic one. Research involving neurological anomalies,
+            specifically cases where the capacity for mental fatigue was lost following a stroke, demonstrates a
+            profound disconnect between the feeling of cognitive depletion and the capacity for sustained attention.
+          </p>
 
-    // ---------- HATTIE SCATTER PLOT (clickable dots) ----------
-    const scatterPlot = document.getElementById('scatterPlot');
-    const tooltipDiv = document.getElementById('dotTooltip');
+          <p class="callout-line">
+            The subject did not become smarter. The subject gained patience.
+          </p>
 
-    // influence data (simulated but grounded)
-    const influences = [
-      { name: 'Collective teacher efficacy', effect: 1.57, type: 'apex', desc: 'Shared belief among faculty → strongest positive lever.' },
-      { name: 'Self-reported grades (expectation)', effect: 1.33, type: 'apex', desc: 'Proxy for student expectation; predicts achievement powerfully.' },
-      { name: 'Boredom', effect: -0.49, type: 'nadir', desc: 'Corrosive; prevents memory encoding. More detrimental than LD.' },
-      { name: 'Homework (compliance focus)', effect: 0.29, type: 'low', desc: 'When used as repetition/punishment, effect negligible.' },
-      { name: 'Retention (hold back)', effect: -0.32, type: 'negative', desc: 'Negative overall; rarely helps long-term.' },
-      { name: 'Ability grouping', effect: 0.12, type: 'low', desc: 'Minimal effect, often reinforces fixed mindset.' },
-      { name: 'Feedback', effect: 0.70, type: 'mid', desc: 'High when specific, task-focused; otherwise average.' }
-    ];
+          <p>
+            This reveals a critical insight. The narrative adopted by the learner directly modulates the perceived
+            reality of the limit. If the collective team, including parents, educators, and the student, operates
+            from the premise that cognitive strain signals growth rather than failure, the brain's internal governor
+            loosens.
+          </p>
 
-    // clear and draw dots
-    function renderScatter() {
-      scatterPlot.innerHTML = '';
-      const width = scatterPlot.clientWidth;
-      const height = scatterPlot.clientHeight;
-      
-      influences.forEach((inf, i) => {
-        // map effect size roughly to x position. typical range -0.5 to 1.6
-        let xNorm = (inf.effect + 0.8) / 2.8;  // shift & scale
-        xNorm = Math.min(Math.max(xNorm, 0.05), 0.95);
-        const xPos = xNorm * width;
-        
-        // y: some pseudo grouping for visual spread (use index)
-        const yOffset = 20 + (i * 27) % (height - 40);
-        const yPos = Math.min(height - 15, Math.max(20, yOffset));
-        
-        const dot = document.createElement('div');
-        dot.className = `dot ${inf.type === 'apex' ? 'apex' : (inf.type === 'nadir' ? 'nadir' : '')}`;
-        dot.style.left = xPos + 'px';
-        dot.style.bottom = (height - yPos) + 'px';  // because bottom is anchored
-        
-        dot.setAttribute('data-name', inf.name);
-        dot.setAttribute('data-desc', inf.desc);
-        dot.setAttribute('data-effect', inf.effect.toFixed(2));
-        
-        dot.addEventListener('click', (e) => {
-          const name = e.currentTarget.getAttribute('data-name');
-          const desc = e.currentTarget.getAttribute('data-desc');
-          const eff = e.currentTarget.getAttribute('data-effect');
-          tooltipDiv.innerHTML = `⤷ <strong>${name}</strong> · effect size ${eff} — ${desc}`;
-        });
-        
-        scatterPlot.appendChild(dot);
-      });
-    }
+          <p class="callout-line">
+            Neural plasticity accelerates when the expectation of eventual mastery remains intact.
+          </p>
+        </section>
 
-    // default tooltip message
-    tooltipDiv.innerHTML = `⤷ click any dot — each influence reveals meta‑detail.`;
+        <section class="article-section" id="hierarchy">
+          <h2>The Empirical Hierarchy: What Actually Influences Achievement</h2>
 
-    // ---------- HIGHLIGHT REEL (fluid animation) ----------
-    const quoteStrip = document.getElementById('quoteStrip');
-    
-    const quotes = [
-      { text: '“The narrative adopted by the learner directly modulates the perceived reality of the limit.”', meta: 'neurological governor · false fatigue' },
-      { text: '“Collective Teacher Efficacy & Student Expectation — the two most potent levers in education.”', meta: 'hattie apex · shared cognitive frameworks' },
-      { text: '“Boredom is not neutral; it is an active, corrosive agent that prevents encoding.”', meta: 'nadir of influence · more detrimental than LD' },
-      { text: '“When a measure becomes a target, it ceases to be a good measure.”', meta: 'Goodhart’s law · grades as lagging indicators' },
-      { text: '“The infrastructure required to do this is currently under construction.”', meta: 'narrative shift · architecture of capability' }
-    ];
+          <p>
+            Moving from neurological theory to empirical evidence, the most wide-ranging synthesis of educational
+            research available is John Hattie's meta-analysis of hundreds of influences on student achievement.
+            A visual representation of this data reveals a hierarchy that frequently contradicts conventional educational practice.
+          </p>
 
-    function renderQuotes() {
-      quoteStrip.innerHTML = '';
-      quotes.forEach((q, idx) => {
-        const card = document.createElement('div');
-        card.className = 'insight-card';
-        card.style.animation = 'none';  // reset
-        card.offsetHeight; // reflow
-        card.style.animation = null;
-        
-        card.innerHTML = `
-          <div>${q.text}</div>
-          <div class="card-meta">${q.meta}</div>
-        `;
-        quoteStrip.appendChild(card);
-      });
-    }
+          <h3>The Apex of Influence</h3>
+          <p>
+            At the very summit of effective interventions sit two factors that eclipse nearly all structural or
+            resource-based investments. The first is <strong>Collective Teacher Efficacy</strong>, the shared belief
+            among a faculty that they possess the capacity to positively affect student outcomes. The second is
+            <strong>Student Self-Reported Grades</strong>, which functions less as a measure of past performance and
+            more as a proxy for <strong>Student Expectation</strong>.
+          </p>
 
-    // replay animation: remove and re-add cards
-    function replayQuoteAnimation() {
-      const cards = document.querySelectorAll('.insight-card');
-      cards.forEach(card => {
-        card.style.animation = 'none';
-        card.offsetHeight;
-        card.style.animation = '';
-      });
-    }
+          <p class="callout-line">
+            These are not material resources. They are shared cognitive frameworks.
+          </p>
 
-    // replay button
-    const replayBtn = document.getElementById('replayQuotes');
-    
-    // initial render
-    renderScatter();
-    renderQuotes();
-    
-    // Recalculate scatter on window resize (keep dots relative)
-    window.addEventListener('resize', () => {
-      renderScatter();
-    });
+          <h3>The Nadir of Influence</h3>
+          <p>
+            At the absolute bottom of the list, ranking as more detrimental to learning than many far more dramatic
+            factors, sits <strong>Boredom</strong>. This is a crucial distinction. Boredom is not a neutral state
+            of inactivity. It is an active, corrosive agent that prevents the encoding of memory and the formation
+            of durable neural pathways.
+          </p>
 
-    replayBtn.addEventListener('click', replayQuoteAnimation);
+          <p>
+            When a subject is perceived as boring, the brain treats the information as non-essential and refuses
+            to commit it to long-term storage. This is particularly perilous for mathematics and science, subjects
+            which often demand a high tolerance for abstraction and incremental, non-intuitive steps.
+          </p>
 
-    // optional: ensure dot tooltip reset
-    scatterPlot.addEventListener('click', (e) => {
-      if(e.target.classList.contains('dot')) return;
-      // if clicked on background, keep last message? we keep it.
-    });
+          <blockquote class="inline-quote">
+            <p>When instruction fails to bridge the gap between abstract procedure and tangible relevance, boredom sets in, and learning effectively ceases.</p>
+          </blockquote>
 
-    // small detail: make the article feel cohesive
-    // also highlight first quote with extra class? not needed.
-    
-    // Additionally we want the highlight reel to feel "fluid" — already animated via css.
-    // On page load, if someone wants to see them again.
-    
-    // Also, we add a tiny function to show the tooltip for apex/nadir on hover? not necessary.
-    // But to stay minimal: we respect the "visual stunning but minimal".
-    
-    // Extra: The scatter plot might be narrow on mobile — we adjust. Already responsive.
-    // re-render after font load? just on resize.
+          <h3>The Trap of Measurement</h3>
+          <p>
+            This hierarchy clarifies the paradoxical role of grading and homework. When deployed as instruments
+            of compliance, punishment, or mindless repetition, these tools rank remarkably low, often producing
+            effects that are negligible or even negative.
+          </p>
 
-    // For a thoughtful touch: set default tooltip with an example.
-    setTimeout(() => {
-      // if no dot clicked yet, show a hint
-      if(tooltipDiv.innerHTML.includes('click any dot')) {
-        // keep
-      }
-    }, 100);
-    
-    // Finally, make the first dot simulate a click for demo? not needed.
-    // we can let user explore.
-    
-    // manually set a default message after a while?
-    // All good.
-  })();
-</script>
+          <p>
+            The reason is encapsulated by Goodhart's Law:
+          </p>
 
-<!-- ensure scatter plot dots are positioned correctly even if container size changes -->
-<style>
-  .scatter-plot { position: relative; width: 100%; }
-  .dot { will-change: transform; }
-  .insight-card { will-change: transform, opacity; }
-  /* ensure fluid typography */
-  @media (max-width: 550px) {
-    h1 { font-size: 2rem; }
-    .insight-card { font-size: 1.1rem; }
-  }
-</style>
+          <blockquote class="inline-quote">
+            <p>“When a measure becomes a target, it ceases to be a good measure.”</p>
+          </blockquote>
 
+          <p>
+            A grade is a lagging indicator. It is a snapshot of a specific gap in foundational understanding at
+            a specific moment in time. To reshape the entire learning process around the acquisition of the grade
+            is to mistake the shadow for the substance.
+          </p>
+
+          <p class="callout-line">
+            The grades served only to codify a temporary state of misalignment between the student's mind and the curriculum's presentation.
+          </p>
+        </section>
+
+        <section class="article-section" id="intervention">
+          <h2>The Optimal Intervention: Precision Over Bureaucracy</h2>
+
+          <p>
+            The evidence for one-on-one tutoring is overwhelming. This model, sometimes referred to as the
+            “Aristotle for Alexander” approach, bypasses the administrative noise of the standard classroom.
+          </p>
+
+          <p>
+            The skilled tutor does not assign a letter grade. The tutor administers a diagnostic probe, identifies
+            the precise conceptual hole in the foundation, and fills it with targeted practice and explanation.
+            This method operates with surgical precision, free from the need to teach to the middle of a bell curve
+            or maintain the appearance of uniform progress across a group with extreme variance in capability.
+          </p>
+
+          <p>
+            The focus shifts from the external validation of the grade to the internal coherence of the student's
+            mental model. The emphasis lands on four core inputs rather than the single output of a report card:
+          </p>
+
+          <div class="framework-grid">
+            <div class="framework-card">
+              <h4>Narrative and Belief</h4>
+              <p>The consistent reinforcement that struggle is a function of unfamiliarity, not a permanent deficit.</p>
+            </div>
+            <div class="framework-card">
+              <h4>Foundational Coherence</h4>
+              <p>The systematic closing of knowledge gaps that render new information disjointed or arbitrary.</p>
+            </div>
+            <div class="framework-card">
+              <h4>Metacognitive Strategy</h4>
+              <p>The explicit teaching of self-regulation, self-questioning, and awareness of one’s own thinking.</p>
+            </div>
+            <div class="framework-card">
+              <h4>Systematic Difficulty</h4>
+              <p>A scaffolded increase in challenge that maintains the balance between strain and achievable flow.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="article-section" id="practice">
+          <h2>The Physiology of Practice: Strenuousness, Flow, and the False Flag</h2>
+
+          <p>
+            A pervasive and damaging myth holds that effective learning must be fun. While curiosity and engagement
+            are excellent states, the reality of deliberate practice is that it often begins with friction and tedium.
+            The act of drilling multiplication facts, manipulating algebraic symbols, or parsing dense scientific text
+            rarely offers immediate reward.
+          </p>
+
+          <p>
+            This initial phase of strenuousness triggers the brain's internal governor. The system issues an
+            “exhausted” signal as a prompt to disengage and seek something more immediately gratifying.
+          </p>
+
+          <p class="callout-line">
+            The skilled learner recognizes this signal as a false flag.
+          </p>
+
+          <p>
+            That learner understands that friction is often the price of entry for the flow state, the condition of
+            deep immersion where time dilates and the task becomes intrinsically rewarding. Athletic training offers
+            a useful parallel. The runner does not enjoy every stride, but the strain is reinterpreted as productive.
+          </p>
+
+          <blockquote class="inline-quote">
+            <p>The goal is not to eliminate the feeling of mental effort but to reinterpret it as the necessary precursor to mastery.</p>
+          </blockquote>
+        </section>
+
+        <section class="article-section" id="fog">
+          <h2>Navigating the Epistemic Fog: Useful Models in an Opaque System</h2>
+
+          <p>
+            Any discussion of learning and the brain must conclude with humility. Humanity understands the chronology
+            of the cosmos with startling precision, yet still struggles to explain the electrochemical cascade that
+            occurs when a child recognizes a pattern in a sequence of numbers.
+          </p>
+
+          <p>
+            This uncertainty provides fertile ground for “truthy” but unsubstantiated myths about learning.
+            The taxonomy of visual learners versus auditory learners, the categorical dismissal of memorization,
+            and the prophecy of being “just not a math person” endure because they offer simple explanations for
+            a deeply complex system.
+          </p>
+
+          <p>
+            The proper response is not blind allegiance to a single method, but an iterative commitment to useful
+            models. As George Box famously put it:
+          </p>
+
+          <blockquote class="inline-quote">
+            <p>“All models are wrong, but some are useful.”</p>
+          </blockquote>
+
+          <p>
+            The path forward for any student grappling with mathematics lies not in making the work effortless,
+            but in constructing a better narrative around the effort itself.
+          </p>
+
+          <p class="callout-line final-line">
+            “The infrastructure required to do this is currently under construction.”
+          </p>
+        </section>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
