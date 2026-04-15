@@ -71,7 +71,7 @@ function parseMarkdown(md) {
       i++; continue;
     }
 
-    // ── Callout block  >  [!key]  or  > [!quote] ───────────
+    // ── Blockquote ──────────────────────────────────────────
     // Collect all consecutive "> " lines as one block
     if (/^>\s/.test(line) || line === '>') {
       const blockLines = [];
@@ -79,21 +79,8 @@ function parseMarkdown(md) {
         blockLines.push(lines[i].replace(/^>\s?/, ''));
         i++;
       }
-      const first = blockLines[0].trim();
-      const typeMatch = first.match(/^\[!(key|quote)\]$/i);
-      if (typeMatch) {
-        const type    = typeMatch[1].toLowerCase();
-        const content = blockLines.slice(1).join(' ').trim();
-        const icon    = type === 'key' ? '✦' : '❝';
-        const cls     = type === 'key' ? 'callout-key' : 'callout-quote';
-        html += `<div class="${cls}" data-callout="${type}">\n`;
-        html += `  <span class="callout-icon">${icon}</span>${parseLine(content)}\n`;
-        html += `</div>\n`;
-      } else {
-        // Generic blockquote
-        const content = blockLines.join(' ').trim();
-        html += `<blockquote class="callout-quote"><span class="callout-icon">❝</span>${parseLine(content)}</blockquote>\n`;
-      }
+      const content = blockLines.join(' ').trim();
+      html += `<blockquote>${parseLine(content)}</blockquote>\n`;
       continue;
     }
 
@@ -148,87 +135,6 @@ function parseMarkdown(md) {
 }
 
 // ─────────────────────────────────────────────────────────────
-// Extract callouts from rendered HTML for sidebar
-// ─────────────────────────────────────────────────────────────
-function extractHighlights(container) {
-  const callouts = container.querySelectorAll('[data-callout]');
-  return Array.from(callouts).map(el => ({
-    type: el.dataset.callout,
-    text: el.innerText.replace(/^[✦❝]\s*/, '').trim()
-  }));
-}
-
-// ─────────────────────────────────────────────────────────────
-// Build sidebar Table of Contents
-// ─────────────────────────────────────────────────────────────
-function buildTOC(container, tocEl) {
-  const headings = container.querySelectorAll('h2, h3');
-  if (!headings.length) return;
-
-  headings.forEach(h => {
-    const a = document.createElement('a');
-    a.href    = `#${h.id}`;
-    a.textContent = h.textContent;
-    if (h.tagName === 'H3') a.style.paddingLeft = '1.1rem';
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.getElementById(h.id);
-      if (target) {
-        const y = target.getBoundingClientRect().top + window.pageYOffset - 90;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    });
-    tocEl.appendChild(a);
-  });
-}
-
-// ─────────────────────────────────────────────────────────────
-// Active TOC highlight on scroll
-// ─────────────────────────────────────────────────────────────
-function watchTOC(container, tocEl) {
-  const headings  = Array.from(container.querySelectorAll('h2[id], h3[id]'));
-  const links     = Array.from(tocEl.querySelectorAll('a'));
-  if (!headings.length) return;
-
-  function update() {
-    let active = headings[0]?.id;
-    headings.forEach(h => {
-      if (h.getBoundingClientRect().top < 110) active = h.id;
-    });
-    links.forEach(l => {
-      l.classList.toggle('active', l.getAttribute('href') === `#${active}`);
-    });
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-}
-
-// ─────────────────────────────────────────────────────────────
-// Render highlights into sidebar
-// ─────────────────────────────────────────────────────────────
-function renderHighlights(highlights, listEl) {
-  listEl.innerHTML = '';
-  highlights.forEach(({ type, text }) => {
-    const card = document.createElement('div');
-    card.className = `hl-card hl-card--${type}`;
-    card.innerHTML = `
-      <span class="hl-icon">${type === 'key' ? '✦ Key insight' : '❝ Notable quote'}</span>
-      <span class="hl-text">${text}</span>
-    `;
-    // Subtle 3-D tilt
-    card.addEventListener('mousemove', e => {
-      const r  = card.getBoundingClientRect();
-      const rx = ((e.clientY - r.top)  / r.height - 0.5) * -6;
-      const ry = ((e.clientX - r.left) / r.width  - 0.5) *  6;
-      card.style.transform = `translateY(-2px) perspective(400px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-    listEl.appendChild(card);
-  });
-}
-
-// ─────────────────────────────────────────────────────────────
 // Build post hero section from manifest metadata
 // ─────────────────────────────────────────────────────────────
 function buildHero(post) {
@@ -261,10 +167,6 @@ async function init() {
 
   const articleEl   = document.getElementById('article-body');
   const heroEl      = document.getElementById('post-hero');
-  const tocEl       = document.getElementById('toc');
-  const tocPanel    = document.getElementById('toc-panel');
-  const hlPanel     = document.getElementById('highlights-panel');
-  const hlList      = document.getElementById('highlights-list');
 
   if (!postId) {
     articleEl.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-sans)">No article ID in URL. Go back and choose an article.</p>';
@@ -296,21 +198,7 @@ async function init() {
     const bodyHTML = parseMarkdown(md);
     articleEl.innerHTML = bodyHTML;
 
-    // 5. Build TOC
-    buildTOC(articleEl, tocEl);
-    if (tocEl.children.length) {
-      tocPanel.style.display = '';
-      watchTOC(articleEl, tocEl);
-    }
-
-    // 6. Extract highlights
-    const highlights = extractHighlights(articleEl);
-    if (highlights.length) {
-      hlPanel.style.display = '';
-      renderHighlights(highlights, hlList);
-    }
-
-    // 7. Wire reveal animations
+    // 5. Wire reveal animations
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     updateProgress();
 
