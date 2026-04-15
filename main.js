@@ -29,8 +29,8 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(e
 function bindCardGlow(card) {
   card.addEventListener('mousemove', (e) => {
     const r = card.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width)  * 100;
-    const y = ((e.clientY - r.top)  / r.height) * 100;
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
     card.style.setProperty('--mx', `${x}%`);
     card.style.setProperty('--my', `${y}%`);
   });
@@ -44,8 +44,8 @@ function formatDate(iso) {
 
 // ── Build card HTML ───────────────────────────────────────────
 function buildCard(post, index) {
-  const num     = String(index + 1).padStart(2, '0');
-  const tags    = (post.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('');
+  const num = String(index + 1).padStart(2, '0');
+  const tags = (post.tags || []).map(t => `<span class="card-tag">${t}</span>`).join('');
   const dateStr = post.date ? formatDate(post.date) : '';
 
   const card = document.createElement('a');
@@ -54,7 +54,7 @@ function buildCard(post, index) {
   card.setAttribute('aria-label', post.title);
 
   card.innerHTML = `
-    <p class="card-num">Essay ${num}</p>
+    <p class="card-num">  ${num}</p>
     <h2 class="card-title">${post.title}</h2>
     <p class="card-subtitle">${post.subtitle || ''}</p>
     ${tags ? `<div class="card-tags">${tags}</div>` : ''}
