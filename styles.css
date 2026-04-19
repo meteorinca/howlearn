@@ -117,11 +117,7 @@ h1, h2, h3 {
 
 .hero-art,
 .post-art {
-  background: linear-gradient(180deg, #ffffff, #f7f2ff);
-  border: 1px solid var(--line);
-  border-radius: 28px;
-  box-shadow: var(--shadow);
-  padding: 14px;
+  /* Removed background, border, and shadow to make transparent PNGs seamless */
 }
 
 .section-block {
