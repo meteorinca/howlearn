@@ -1,4 +1,4 @@
-# Narratives: Main driver of learning
+# Main Driver of Learning
 
 ## The Power of Stories
 
@@ -95,4 +95,4 @@ The path forward for any student grappling with the strenuous nature of mathemat
 
 > It requires a shift from "I cannot do this" to "The infrastructure required to do this is currently under construction."
 
-When the collective belief system supports that narrative, the brain's false governor recedes, and the architecture of capability becomes visible.
+The story we tell ourselves matters because it is how we choose to interpret our experiences. 

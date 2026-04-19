@@ -2,10 +2,29 @@
   {
     "id": "arc-0001",
     "file": "posts/Post1.md",
-    "title": "The Architecture of Capability",
-    "subtitle": "Belief, boredom, and the science of how learning actually works.",
-    "tags": ["Learning Science", "Math", "Educational Psychology"],
+    "title": "The Main Driver of Learning",
+    "subtitle": "How beliefs and mindset override raw cognitive power",
+    "tags": [
+      "Learning Science",
+      "Belief",
+      "Mindset",
+      "Educational Psychology",
+      "Boredom"
+    ],
     "date": "2026-04-14",
     "readingTime": 9
+  },
+  {
+    "id": "arc-0002",
+    "file": "posts/Post2.md",
+    "title": "Math as a Map",
+    "subtitle": "Using mental models to build math fluency.",
+    "tags": [
+      "Math",
+      "Mental Models",
+      "Cognitive Science"
+    ],
+    "date": "2026-04-21",
+    "readingTime": 8
   }
 ]
