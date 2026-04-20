@@ -6,7 +6,7 @@ Mathematics operates as a formal symbolic system whose grammar governs the descr
 
 The comparison to maps proves useful. A map abstracts terrain, preserving only those features relevant to navigation while discarding the overwhelming richness of direct sensory experience. Similarly, mathematical models capture the **skeletal logic of phenomena** while setting aside the flesh of contingent detail. This abstraction constitutes not a weakness but the very source of its power. Any map that shows every pebble and blade of grass would prove as useless as the one that shows nothing at all.
 
-This selective representation explains why the same equations govern systems that appear utterly dissimilar. The differential equation describing heat diffusion through a metal bar also describes the spread of a rumor through a population. The geometry of soap films illuminates the architecture of cell membranes. Such unities would remain forever hidden without the clarifying lens of formal structure.
+This selective representation explains why the same equations govern systems that appear utterly dissimilar. The differential equation describing heat diffusion through a metal bar also describes the spread of a rumor through a population. The geometry of soap films illuminates the architecture of cell membranes.
 
 ## Math is the Language of Prediction
 
@@ -16,7 +16,7 @@ The predictive capacity of mathematical physics stands among the most remarkable
 
 Consider the trajectory of a spacecraft bound for lunar orbit. The vessel departs a planet rotating at approximately one thousand miles per hour, itself hurtling through space at sixty-seven thousand miles per hour around a star moving at nearly half a million miles per hour relative to the galactic center.
 
-Despite this staggering concatenation of motions, the equations of celestial mechanics permit the calculation of a course with such precision that the vessel arrives within meters of its intended position after traversing nearly four hundred thousand kilometers. The onboard guidance computer that executed these calculations for the Apollo missions possessed less processing power than the microcontroller embedded in a contemporary garage door opener. The hardware limitations necessitated extreme economy of code, which in turn demanded a deeper understanding of the underlying mathematics. Engineers could not rely on brute computational force. They required elegance.
+Despite this staggering concatenation of motions, the equations of celestial mechanics permit the calculation of a course with such precision that the vessel arrives within meters of its intended position after traversing nearly four hundred thousand kilometers. The onboard guidance computer that executed these calculations for the Apollo missions possessed less processing power than the microcontroller embedded in a contemporary garage door opener. The hardware limitations necessitated extreme economy of code, which in turn demanded a deeper understanding of the underlying mathematics. Engineers could not rely on brute computational force. **They required elegance.**
 
 The same principles enable the pressurized aluminum cylinders of commercial aviation to carry hundreds of passengers across oceans. The Navier-Stokes equations describe fluid flow around wings. Probability theory determines acceptable safety margins. Each flight represents a practical validation of abstract theorems developed centuries earlier.
 
