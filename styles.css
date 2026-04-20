@@ -75,7 +75,7 @@ img { display: block; max-width: 100%; }
 .hero,
 .post-top {
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr;
+  grid-template-columns: 1.1fr 1.1fr;
   gap: 28px;
   align-items: center;
   padding: 52px 0 24px;
@@ -117,7 +117,20 @@ h1, h2, h3 {
 
 .hero-art,
 .post-art {
+  position: relative;
   /* Removed background, border, and shadow to make transparent PNGs seamless */
+}
+
+.hero-art canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: var(--radius);
+  mix-blend-mode: screen;
 }
 
 .section-block {
