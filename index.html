@@ -3,6 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How Brains Learn</title>
   <meta name="description" content="Clear writing on learning, math, and how understanding grows.">
@@ -24,6 +34,9 @@
       <a class="brand" href="index.html">How Brains Learn</a>
       <nav class="top-nav">
         <a href="#articles">Articles</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+        </button>
       </nav>
     </div>
   </header>
@@ -39,7 +52,7 @@
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <img src="assets/brain-stars-bg.png" alt="">
+        <img id="main-brain-img" src="assets/mainbrainWht.png" alt="">
       </div>
     </section>
 
@@ -60,6 +73,7 @@
   </footer>
 
   <script src="main.js"></script>
+  <script src="theme.js"></script>
 </body>
 
 </html>
