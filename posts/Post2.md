@@ -1,67 +1,89 @@
-# Why Math Feels Like a Wall (And Why That’s Not a Design Flaw)
+# Learning Math by Noticing Patterns
 
-I’ve written before about Hattie’s rankings. About how boredom sits at the very bottom, below paralysis, below ADHD, and even below physical punishment!
+## A different way to help students who are stuck
 
-> Boredom pulls attention away from learning.
+Boredom blocks learning more than anything else in a classroom. Research on what affects student achievement puts boredom at the very bottom, below even physical punishment. In math class, boredom arrives often and stays long. The reason is not bad teaching. The reason is a mismatch between how math is usually taught and how the brain actually learns.
 
-Boredom is especially common in math class. Most teachers work hard to make it relevant, clear, even fun. The problem isn’t malice or incompetence. The problem is the *nature* of math itself—and a deep, unspoken mismatch between how math is structured and how our brains actually learn.
+This mismatch creates a feeling of being lost. A student stares at a problem. Their chest tightens. They say, “I don’t get math.” That sentence feels true, but it is false. They do not get this one problem right now. The brain turns one moment of friction into a story about who they are.
 
-## “I'm not a Math person” & “I just don’t get it” 
+## The story that feels true but is false
 
-A student stares at an equation. They’ve seen it before. They’ve solved it before. But today, nothing clicks. Their chest tightens. They say: *I don’t get math.*
+> A story that matches a strong feeling has power. It does not need facts. 
 
-That sentence is false. They don’t *get* this particular configuration *right now*. But the brain, ever the storyteller, generalizes. One moment of friction becomes a lifelong verdict.
+The thought “I am not a math person” arrives with the sensation of mental effort. It feels like a discovery about the self. It is what some call a “truthy” narrative, a story that gets its strength from a feeling, not from evidence.
 
-I called these “truthy” narratives in the previous post (i.e. stories that feel true because they align with the sensation of mental fatigue). “I’m not a math person” is the king of truthy math narratives. It feels biological. It feels final. But it is neither.
+The real situation is different. No one fully understands math the way a person understands a simple sentence. Math is a human invention for describing patterns. Many of those patterns go against intuition. Even top mathematicians spend most of their time confused. They have simply learned to stay in the fog longer.
 
-The truth is more awkward: 
+When boredom mixes with the belief that talent is fixed, the result is a trap. A fixed mindset hears difficulty and boredom and concludes, “I lack the gift.” A growth mindset hears the same signals and concludes, “My brain has not yet seen the pattern.” Most students never hear the second message. They are never told that not understanding is the starting point for seeing.
 
-> No one fully understands math.
+## What math really is
 
-Not the way you understand a sentence or a face. Math is not a natural object. It’s a invented language for describing patterns that often violate our intuition. Even professional mathematicians spend most of their time confused. They just have a different relationship to that confusion.
+A teacher of fifty years once described mathematics this way: it is the act of creating explanations for patterns we observe, using clear principles and logical reasoning.
 
-## The Boredom + Fixed Mindset Cocktail
+The key words are observe and create. Nothing in that definition mentions speed. Nothing mentions natural brilliance. The process starts with looking, not with knowing. An explanation is built after patterns are noticed, not before.
 
-Boredom is one of the most damaging things that can happen in class. But boredom alone doesn’t break a student. Boredom plus a fixed mindset? That’s the trap door.
+Yet standard teaching reverses this order. The rule comes first. The reasoning comes next. Practice comes last. This sequence demands understanding before any raw material for understanding exists. It is like teaching someone to ride a bicycle by explaining gyroscopic forces before they ever sit on the seat.
 
-The fixed mindset says: *If this feels hard and boring, it must mean I lack the talent.* The growth mindset says: *This feels hard and boring because my brain hasn’t yet seen the pattern.*
+## How the brain actually learns something new
 
-Notice the difference. One attributes the feeling to a permanent deficit. The other attributes it to a temporary state of unfamiliarity.
+A child learning to speak does not study grammar charts. The child hears sounds. The child notices that certain sounds go with certain results. The child guesses, gets things wrong, and adjusts. Patterns slowly become clear. The ability to explain the rules of grammar arrives years later, if ever. The natural order is notice first, explain later.
 
-Most students never get the second option. They’re not told that the feeling of “I don’t get it” is not only normal, but *necessary*. They’re not told that the kids who seem to “get” math early aren’t smarter. They’re just less bothered by not understanding.
+Math works the same way. The brain needs to spot regularities before it can build rules. When instruction provides the rule first, many students have nothing to attach it to. Their brains are waiting for raw material that never arrives. The students who seem to “get it” immediately are often the ones who, without realizing it, are scanning for patterns behind the rule. They tolerate the gap between hearing the explanation and finding the pattern. They are not faster thinkers. They are more comfortable with not knowing.
 
-## Math Is Not a Subject. It’s a Pattern-Matching Game.
+## A concrete example: adding fractions
 
-Think about how you learned your native language. Did you understand grammar first? No. You heard sounds. You noticed that certain sounds co-occurred with certain outcomes. You guessed. You were wrong a lot. Then, slowly, patterns emerged. Understanding—explicit, grammatical understanding—came years later, if at all.
+A student sees 3/4 + 1/2 and freezes.
 
-Math works the same way. But we teach it backward.
+The traditional approach repeats the rule for common denominators, shows the steps, and gives more problems. The student may still freeze.
 
-We present a rule. We explain the *why*. Then we ask for practice. That’s like teaching someone to ride a bike by lecturing on gyroscopic precession before they ever get on the seat.
+A pattern-first approach asks a different question: “What is the same? What is different?” The student might notice that both fractions contain a 4 and a 2. That is not understanding. That is observing. From that observation, the student may guess that changing the 2 to a 4 could help. The student tries the guess. It works. Later, the formal explanation of common denominators makes sense, because the student has already felt the pattern.
 
-The brain doesn’t need full understanding to start pattern-matching. In fact, full understanding often *follows* pattern-matching, not the other way around. This is why some kids “get” math early: they accidentally start with the pattern-matching phase. They poke at problems. They notice that whenever you do X, Y happens. They don’t wait for permission to be confused.
+Understanding is the souvenir. Observing is the journey.
 
-## A Concrete Example
+## Replacing the fixed mindset with a detective mindset
 
-Take fractions. A student sees \( \frac{3}{4} + \frac{1}{2} \). They freeze.
+The detective expects confusion at the start of a case. Clues come slowly. Patterns emerge from scattered facts. The detective does not say, “I am not a clue person.” The detective keeps looking.
 
-A traditional approach: re-explain common denominators. Show the algorithm. Then more problems.
+Students can adopt this same stance. Instead of trying to understand immediately, they can try to notice one thing. Then another. A wrong observation is not a failure. It is a draft of an explanation. It shows what the student is paying attention to. A teacher can use that wrong observation to guide attention toward a more useful pattern.
 
-A pattern-matching approach: ask *What’s the same? What’s different?* The student might notice both have a “4” and a “2.” That’s not understanding. That’s noticing. From there, they might guess that changing the 2 into a 4 could help. They try. It works. Later, much later, the *why* of common denominators becomes visible.
+## Practical shifts for parents
 
-The difference is the order of operations. Understanding doesn’t come first. Pattern-matching comes first. Understanding is the souvenir you get after playing with the pattern long enough.
+When a child says, “I don’t get it,” the instinct is to explain. Resist that instinct. An explanation, however clear, takes away the chance to notice the pattern. It teaches the child that confusion means calling for help, not looking closer.
 
-## The Purpose of This Mental Model
+Ask instead: “What is the first small thing you notice?” This question asks for observation, not understanding. The child can answer without being wrong. The question returns attention to the problem.
 
-So here’s the model I want you to walk away with.
+Other useful questions:
+- “Have you seen anything like this before?”
+- “What would happen if you changed one number?”
+- “Can you draw a picture of what is happening?”
 
-> Math is not a body of knowledge to be understood. It is a set of patterns to be recognized, guessed at, and tested.
+These questions teach pattern attention. They build the habit of looking before deciding that something is impossible.
 
-For **parents**: When your child says “I don’t get it,” resist the urge to explain. Instead, say: “That’s fine. What’s the first small thing you notice?” You’re not teaching math. You’re teaching pattern-attention.
+## Practical shifts for teachers
 
-For **teachers**: Replace “Does everyone understand?” with “What pattern did you see?” The first question invites performative nodding. The second invites honest observation—even if the observation is wrong. Wrong patterns are data, not failure.
+> Replace “Does everyone understand?” with “What pattern did you see?”
 
-For **students**: Math is easier when you stop trying to understand it and start trying to see the patterns.
+The first question asks for a nod. The second asks for an honest observation. A student who is lost can still say, “The numbers got bigger.” That is a starting point. The class can build from that observation toward more precise descriptions.
 
-> You don’t need to understand math. You just need to notice one pattern. Then another. Then another.
+When a student gives a wrong answer, treat it as useful data. Ask: “That is interesting. What made you think that?” The student’s reasoning reveals what pattern they were noticing. That information helps adjust instruction. It also signals to the class that wrong guesses are part of the work.
 
-That’s how every brain learns.
+Introduce new topics with several examples before giving any rule. Let students sort the examples into groups. Let them describe what the groups have in common. Let them try to predict the next example. The rule becomes the name for something they have already seen.
+
+## Practical shifts for students
+
+A student stuck on a problem can pause and ask three questions:
+1. What do I notice, even if it seems small?
+2. What is similar to something I have seen before?
+3. What might happen if I try one small change?
+
+These questions shift the goal from “understand everything” to “notice one thing.” Noticing one thing reduces the pressure. It gives the brain a place to start.
+
+A student can also remember this fact: professional mathematicians spend most of their time confused. Confusion is not a stop sign. It is the weather inside which patterns appear. The student who expects fog will not panic when fog arrives.
+
+## The long-term goal
+
+The aim is not to eliminate confusion. The aim is to change the relationship to confusion. When confusion means “I am bad at this,” the student quits. When confusion means “I am about to notice something new,” the student persists.
+
+This shift takes practice. Each time a student notices a pattern before receiving an explanation, the detective habit strengthens. Over time, the student stops dreading the fog. The fog becomes interesting.
+
+> Math is not a body of facts. It is a set of patterns waiting to be observed and explained. The brain is built to do this work. It needs only the right questions and the permission to not know yet.
